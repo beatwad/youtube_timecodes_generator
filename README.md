@@ -9,7 +9,7 @@
 pip install -r requirements.txt
 ```
 
-- Create .env file in the project directory and add in it 
+- Create .env file in the project directory and add to it 
 
 ```
 OPENAI_API_KEY="YOUR_OPENAI_KEY"
