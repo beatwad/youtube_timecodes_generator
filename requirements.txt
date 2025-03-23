@@ -1,6 +1,7 @@
-openai-whisper
-streamlit
-pytube
-moviepy
-requests
-python-dotenv
+openai==1.68.2
+openai-whisper==20231117
+streamlit==1.43.2
+yt_dlp==2025.3.21
+moviepy==1.0.3
+requests==2.32.3
+python-dotenv==1.0.1
