@@ -4,8 +4,8 @@ from uuid import uuid4
 
 import streamlit as st
 
-from src.download import video_title, download_subtitles, vtt_to_timecode_phrases
-from src.summarize import create_timecodes
+from src.download import video_title, download_subtitles, postprocess
+from src.llm import create_timecodes
 
 from dotenv import load_dotenv
 
@@ -50,8 +50,7 @@ def main():
                 
                 # Download audio to runtimes/ folder
                 output_path = download_subtitles(youtube_url, output_path)
-                vtt_to_timecode_phrases(output_path, output_path)
-                
+                subtitle_text = postprocess(output_path)
             
             except Exception as e:
                 print(e)
@@ -63,10 +62,7 @@ def main():
 
             # Summarize
             try:
-                with open(output_path, "r") as f:
-                    subtitle_text = f.read()
-                
-                assert os.environ["OPENAI_API_KEY"], "OPENAI_API_KEY not found!"
+                assert os.environ["LLM_API_KEY"], "LLM_API_KEY not found!"
 
                 progress_placeholder.text("Timecodes creating...")
 

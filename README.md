@@ -36,7 +36,7 @@ touch .env
 ```
 Add to it:
 ```
-OPENAI_API_KEY="YOUR_OPENAI_KEY"
+LLM_API_KEY="YOUR_LLM_API_KEY"
 ```
 
 5. **Service launch:*
