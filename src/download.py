@@ -1,7 +1,7 @@
+import os
 import re
 import yt_dlp
 import subprocess
-from src.app_config import SUB_LANG
 
 
 def video_title(youtube_url: str) -> str:
@@ -22,14 +22,14 @@ def video_title(youtube_url: str) -> str:
         return info['title']
 
 
-def download_subtitles(youtube_url: str, output_path: str) -> str:
+def download_subtitles(youtube_url: str, output_path: str, language: str) -> str:
     # The command as a list of arguments
     command = [
         'yt-dlp',
         youtube_url,
         '--write-auto-subs',
         '--write-subs',
-        '--sub-lang', SUB_LANG,
+        '--sub-lang', language,
         '--convert-subs', 'srt',
         '--skip-download',
         '--output', output_path,
@@ -44,7 +44,7 @@ def download_subtitles(youtube_url: str, output_path: str) -> str:
         print(f"Error occurred: {e.stderr}")
     except FileNotFoundError:
         print("yt-dlp not found. Please ensure it's installed and available in PATH")
-    return output_path + "." + SUB_LANG + ".srt"
+    return output_path + "." + language + ".srt"
 
 
 def postprocess(output_path: str) -> str:
@@ -66,6 +66,7 @@ def postprocess(output_path: str) -> str:
     result = "\n".join(result)
     with open(output_path, "w") as f:
         f.write(result)
+    # os.remove(output_path)
     return result
 
 

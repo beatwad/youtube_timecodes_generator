@@ -19,9 +19,10 @@ Follow strict rules:
 """
 
 timecode_prompt = """
-I have a subtitle file containing timestamps and text in a specific language. 
+I have a subtitle file containing timestamps and text in {input_language} language. 
 I want you to analyze the subtitles, break them down into key topics or sections based on their content, 
-and create a list of YouTube timecodes with corresponding titles. Each title should summarize the topic of that section in the same language as the subtitles. 
+and create a list of YouTube timecodes with corresponding titles. 
+Each title should summarize the topic of that section in the same language ({input_language}) as the subtitles. 
 
 Follow these steps:
 1. Parse the subtitles file and extract all timestamps (in the format `HH:MM:SS.sss`) along with the associated subtitle text.
@@ -35,7 +36,7 @@ For example:
 2:15 Main Topic Begins
 5:30 Conclusion
 ```
-6. Ensure the titles are clear, concise, and written in the same language as the subtitles, preserving their original meaning and context.
+6. Ensure the titles are clear and concise.
 Here’s an example file to illustrate:
 ```
 00:00:00.000 --> 00:00:06.001

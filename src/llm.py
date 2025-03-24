@@ -78,7 +78,7 @@ class LoggerChatModel:
                     time.sleep(30)
 
 
-def create_timecodes(input_text: str) -> str:
+def create_timecodes(input_text: str, language: str) -> str:
     """
     Create timecodes for the YouTube video.
 
@@ -96,8 +96,8 @@ def create_timecodes(input_text: str) -> str:
     llm = GeminiModel(llm_api_key, MODEL_NAME)
     llm_cheap = LoggerChatModel(llm)
     chain = prompt_template | llm_cheap
-
     result = chain.invoke({
+        "input_language": language, 
         "input_text": input_text, 
         })
 

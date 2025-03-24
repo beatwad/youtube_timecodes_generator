@@ -11,10 +11,62 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 def main():
     st.title("YouTube Timecodes Generation")
 
+    # Language selection
+    languages = {
+        "Arabic": "ar",
+        "Bengali": "bn",
+        "Bulgarian": "bg",
+        "Catalan": "ca",
+        "Chinese": "cn",
+        "Croatian": "hr",
+        "Czech": "cs",
+        "Danish": "da",
+        "Dutch": "nl",
+        "English": "en",
+        "Finnish": "fi",
+        "French": "fr",
+        "German": "de",
+        "Greek": "el",
+        "Gujarati": "gu",
+        "Hebrew": "he",
+        "Hindi": "hi",
+        "Hungarian": "hu",
+        "Indonesian": "id",
+        "Italian": "it",
+        "Japanese": "ja",
+        "Kannada": "kn",
+        "Korean": "ko",
+        "Latvian": "lv",
+        "Lithuanian": "lt",
+        "Malay": "ms",
+        "Malayalam": "ml",
+        "Marathi": "mr",
+        "Norwegian": "no",
+        "Polish": "pl",
+        "Portuguese": "pt",
+        "Romanian": "ro",
+        "Russian": "ru",
+        "Serbian": "sr",
+        "Slovak": "sk",
+        "Slovenian": "sl",
+        "Spanish": "es",
+        "Swedish": "sv",
+        "Tamil": "ta",
+        "Telugu": "te",
+        "Thai": "th",
+        "Turkish": "tr",
+        "Ukrainian": "uk",
+        "Vietnamese": "vi",
+    }
+    selected_language = st.selectbox(
+        "Select subtitle language:",
+        options=list(languages.keys()),
+        index=9  # Default to English
+    )
+    
     # Paste url to youtube video
     youtube_url = st.text_input("Enter the link to the video on YouTube:")
 
@@ -38,7 +90,7 @@ def main():
                 # Set video title
                 title = video_title(youtube_url)
                 title_placeholder.title(title)
-                # progress_placeholder.text("Downloading audio track...")
+                
                 progress_placeholder.text("Downloading subtitles...")
 
                 # Create a runtimes folder and runtime id
@@ -48,13 +100,17 @@ def main():
                 runtime_id = str(uuid4())
                 output_path = directory + "/" + runtime_id
                 
-                # Download audio to runtimes/ folder
-                output_path = download_subtitles(youtube_url, output_path)
+                # Download audio to runtimes/ folder with selected language
+                output_path = download_subtitles(
+                    youtube_url, 
+                    output_path,
+                    language=languages[selected_language]
+                )
                 subtitle_text = postprocess(output_path)
             
             except Exception as e:
                 print(e)
-                st.error("Please enter correct YouTube link!")
+                st.error("Please enter correct YouTube link or subtitles might not be available in selected language!")
                 transcribe_button.empty()
                 title_placeholder.empty()
                 progress_placeholder.empty()
@@ -67,7 +123,7 @@ def main():
                 progress_placeholder.text("Timecodes creating...")
 
                 # Summarize text
-                timecodes = create_timecodes(subtitle_text)
+                timecodes = create_timecodes(subtitle_text, selected_language)
 
                 st.text_area("Result", timecodes, height=300)
             except Exception as e:
@@ -78,7 +134,6 @@ def main():
                 st.stop()
 
             progress_placeholder.empty()
-
 
 if __name__ == "__main__":
     main()
