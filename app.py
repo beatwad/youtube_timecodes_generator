@@ -13,7 +13,7 @@ load_dotenv()
 
 
 def main():
-    st.title("Video Timecodes Generation")
+    st.title("YouTube Timecodes Generation")
 
     # Paste url to youtube video
     youtube_url = st.text_input("Enter the link to the video on YouTube:")
