@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main():
-    st.title("YouTube Timecodes Generation")
+    st.title("YouTube Timecodes Generator")
 
     # Language selection
     languages = {

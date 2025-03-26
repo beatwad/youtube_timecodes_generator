@@ -1,6 +1,6 @@
 # YouTube AI Timecodes Generator
 
-This service downloads and preprocesses subtitles from YouTube video, analyzes and summarizes them and then creates timecodes for every major theme in the video. You don't have to create tim
+This is service for fully automatical YouTube timecode generation using AI capabilities.
 
 ## Install
 
@@ -18,6 +18,32 @@ This service downloads and preprocesses subtitles from YouTube video, analyzes a
    - [How to Install Python on Windows](https://www.geeksforgeeks.org/how-to-install-python-on-windows/)
    - [How to Install Python on Linux](https://www.geeksforgeeks.org/how-to-install-python-on-linux/)
    - [How to Download and Install Python on macOS](https://www.geeksforgeeks.org/how-to-download-and-install-python-latest-version-on-macos-mac-os-x/)
+
+**Activate the virtual environment**
+
+   ```bash
+   python -m venv virtual
+   ```
+   or
+
+   ```bash
+   python3 -m venv virtual
+   ```
+
+   Then activate virtual environment:
+
+   ```bash
+   source virtual/bin/activate
+   ```
+
+   For Windows, you need to open the terminal (Win + R -> type cmd in the window that appears, then Enter):
+
+   ```bash
+   .\virtual\Scripts\activate
+   ```
+
+   If Windows reports that python is not recognized as an executable command, etc., run the python installer again, in the window that appears click Modify -> Next -> Add python to environment variables.
+
 
 **Install requirements:**
 ```bash
@@ -45,6 +71,11 @@ LLM_API_KEY="YOUR_LLM_API_KEY"
 1. Run command in bash
 ```bash
 streamlit run app.py
+```
+If you run this service after logout or reboot, don't forget to activate virtual environment.
+
+```bash
+source virtual/bin/activate
 ```
 
 2. Browser window will be opened. 
