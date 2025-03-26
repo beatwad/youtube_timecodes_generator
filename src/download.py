@@ -64,9 +64,9 @@ def postprocess(output_path: str) -> str:
             result.pop()
         result.append(line)
     result = "\n".join(result)
-    with open(output_path, "w") as f:
-        f.write(result)
-    # os.remove(output_path)
+    # with open(output_path, "w") as f:
+    #     f.write(result)
+    os.remove(output_path)
     return result
 
 
