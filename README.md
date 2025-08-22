@@ -1,6 +1,14 @@
-# YouTube AI Timecodes Generator
+# YouTube AI Timecodes Generator  🕒
 
-This is service for fully automatical YouTube timecode generation using AI capabilities.
+This repository offers an AI-driven tool designed to automatically create timecodes for YouTube videos. Whether you're a video creator, editor, or simply someone who enjoys structuring information, this project is intended to streamline the task of adding timestamps to your content using power of AI. And it's completely free!
+
+## Features 🚀
+
+- AI-powered timecode generation
+- Python3 language support
+- Integration with the YouTube API
+- Streamlit interface for easy use
+- Completely free for everyone
 
 ## Install
 
