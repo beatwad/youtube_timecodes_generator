@@ -15,7 +15,7 @@ This repository offers an AI-driven tool designed to automatically create timeco
 **The app was tested on the following configuration:**
 
 - OS:
-  - Ubuntu 22
+  - Ubuntu 22.04
 - Python:
   - 3.11.9(64b)
 - LLM (AI):
@@ -72,6 +72,17 @@ touch .env
 Enter your LLM API key in the .env file
 ```
 LLM_API_KEY="YOUR_LLM_API_KEY"
+```
+
+**Set config file:**
+
+If you want to change the model or its temperature settings, you can do it in `src/app_config.py`:
+```python
+# name of your preferred model
+MODEL_NAME = "gemini-2.5-flash" 
+# model temperature (0.0 to 2.0) - increasing of temperature value increases model creativity
+# but also makes it more prone to mistakes and hallucinations
+TEMPERATURE = 0.4 
 ```
 
 # Service launch
